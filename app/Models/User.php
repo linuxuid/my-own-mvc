@@ -3,43 +3,43 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-class User 
+use Services\DataMapper\DataMapperEntity;
+
+
+class User extends DataMapperEntity
 {
-    /** @var int */
-    private int $id;
+    /** @var string */
+    protected string $login;
 
     /** @var string */
-    private string $login;
+    protected string $codeWord;
 
     /** @var string */
-    private string $codeWord;
+    protected string $authToken;
 
     /** @var string */
-    private string $authToken;
+    protected string $createdAt;
 
-    /** @var string */
-    private string $createdAt;
+    /** @var integer */
+    protected int $id;
 
     /**
-     * __set helps to set values to $codeWord, $authToken, $createdAt
+     * getName of table in db
      *
-     * @param string $name
-     * @param string $value
+     * @return string
      */
-    public function __set(string $name, string $value)
+    public function getName(): string 
     {
-        $camelCaseName = $this->underscoreToCamelCase($name);
-        $this->$camelCaseName = $value;
+        return $this->login;
     }
 
     /**
-     * convert this string $variable_name to $variableName
+     * get 'User' table name
      *
-     * @param string $name
      * @return string
      */
-    private function underscoreToCamelCase(string $name): string
+    protected static function getTableName(): string
     {
-        return lcfirst(str_replace('_', '', ucwords($name, '_')));
+        return "users";
     }
 }

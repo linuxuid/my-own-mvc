@@ -7,7 +7,23 @@ class DB
     /** @var \PDO */
     private object $pdo;
 
-    public function __construct()
+    /** @var static */
+    private static $instance = null;
+    
+    /**
+     * Single example of class to access to DB
+     *
+     * @return self
+     */
+    public static function getInstance(): self
+    {
+        if(self::$instance === null){
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
+    private function __construct()
     {
         $dsnOptions = (require __DIR__ . '/../Config.php')['db'];
 

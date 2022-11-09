@@ -15,11 +15,14 @@ class MainPageController extends Controller
 
     public function index()
     {
-        $users = $this->db->query("SELECT * FROM `users`;", [], User::class);
+        $users = User::findAll();
+
+        $user = User::find(1);
+
+        var_dump($user);
         
-        echo "<pre>";
-        var_dump($users);
-        
-        // $this->view->renderView("mainPageController.php");
+        $this->view->renderView("mainPageController.php", [
+            'users' => $users,
+        ]);
     }
 }

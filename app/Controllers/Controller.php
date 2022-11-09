@@ -17,7 +17,6 @@ abstract class Controller
     public function __construct()
     {
         $this->view = new View(__DIR__ . '/../../resources/Templates');
-        $this->db = new DB();
+        $this->db = DB::getInstance();
     }
-
 }
