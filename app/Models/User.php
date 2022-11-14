@@ -5,7 +5,6 @@ namespace App\Models;
 
 use Services\DataMapper\DataMapperEntity;
 
-
 class User extends DataMapperEntity
 {
     /** @var string */

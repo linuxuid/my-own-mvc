@@ -10,7 +10,7 @@ class Article extends DataMapperEntity
     /** @var int */
     protected int $id;
 
-    /** @var int */
+    /** @var int foreign key */
     protected int $authorId;
 
     /** @var string */

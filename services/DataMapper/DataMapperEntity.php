@@ -5,7 +5,7 @@ namespace Services\DataMapper;
 
 use Services\DB\DB;
 
-abstract class DataMapperEntity 
+abstract class DataMapperEntity extends DatabaseManager
 {
     /** @var integer */
     protected int $id;
@@ -67,6 +67,4 @@ abstract class DataMapperEntity
 
         return $itemsById ? $itemsById[0] : null;
     }
-
-    abstract protected static function getTableName(): string;
 }

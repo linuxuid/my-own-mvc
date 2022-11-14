@@ -5,6 +5,6 @@ return [
         'host' => 'localhost',
         'dbname' => 'mvc',
         'user' => 'test',
-        'password' => 'password'
+        'password' => 'test123'
     ]
 ];
