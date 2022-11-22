@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Services\DataMapper\DataMapperEntity;
-
+use Services\DataManagment\DataMapperEntity;
 
 class User extends DataMapperEntity
 {
@@ -24,13 +23,23 @@ class User extends DataMapperEntity
     protected int $id;
 
     /**
-     * getName of table in db
+     * get name of user from db
      *
      * @return string
      */
     public function getName(): string 
     {
         return $this->login;
+    }
+
+    /**
+     * get auth token of user from db
+     *
+     * @return string
+     */
+    public function getAuthToken(): string 
+    {
+        return $this->authToken;
     }
 
     /**

@@ -15,14 +15,6 @@ class MainPageController extends Controller
 
     public function index()
     {
-        $users = User::findAll();
-
-        $user = User::find(1);
-
-        var_dump($user);
-        
-        $this->view->renderView("mainPageController.php", [
-            'users' => $users,
-        ]);
+        $this->view->renderView("mainPage.php");
     }
 }

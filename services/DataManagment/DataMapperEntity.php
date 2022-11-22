@@ -1,11 +1,12 @@
 <?php 
 declare(strict_types=1);
 
-namespace Services\DataMapper;
+namespace Services\DataManagment;
 
 use Services\DB\DB;
+use Services\DataManagment\DataBaseManager;
 
-abstract class DataMapperEntity 
+abstract class DataMapperEntity
 {
     /** @var integer */
     protected int $id;
@@ -55,6 +56,21 @@ abstract class DataMapperEntity
     }
 
     /**
+     * Find one note in Database by one column name
+     *
+     * @param string $columnName
+     * @param string $value
+     * @return null|self
+     */
+    public static function findByColumn(string $columnName, string $value): null|self
+    {
+        $db = DB::getInstance();
+        $itemsByColumn = $db->query("SELECT * FROM `" . static::getTableName() . "` WHERE $columnName =:value;", ['value' => $value], static::class);
+
+        return $itemsByColumn ? $itemsByColumn[0] : null;
+    }
+
+    /**
      * find only one row from DB
      *
      * @param integer $id
@@ -68,5 +84,10 @@ abstract class DataMapperEntity
         return $itemsById ? $itemsById[0] : null;
     }
 
+    /**
+     * abstract method for each model
+     *
+     * @return string
+     */
     abstract protected static function getTableName(): string;
 }
